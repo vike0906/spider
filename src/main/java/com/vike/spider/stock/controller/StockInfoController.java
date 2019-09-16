@@ -16,4 +16,5 @@ public class StockInfoController {
     public String hello(){
         return "index";
     }
+
 }
