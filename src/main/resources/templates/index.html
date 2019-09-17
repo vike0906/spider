@@ -5,70 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Thymeleaf</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/simple-sidebar.css}">
+    <link rel="stylesheet" th:href="@{/css/iconfont.css}">
     <script type="text/javascript" th:src="@{/js/jquery-3.4.1.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/iconfont.js}"></script>
-    <style>
-        body{
-            font-size: 16px;
-        }
-        .icon {
-            width: 3em;
-            height: 3em;
-            vertical-align: -0.7em;
-            fill: #666666;
-            overflow: hidden;
-        }
-        .container{
-            width: 100%;
-        }
-    </style>
+    <script type="text/javascript" th:src="@{/js/spider.js}"></script>
+
 </head>
 <body>
-
-<div class="container-fluid fixed-top">
-    <nav class="navbar navbar-expand-md bg-dark navbar-light ">
-        <div class="row container-fluid">
-            <div class="col-md-3" >
-                <svg class="icon" aria-hidden="true">
-                    <use xlink:href="#icon-changyongtubiao-xianxingdaochu-zhuanqu-13"></use>
-                </svg>
-                <span style="color: #666666;font-size: 2em">股票行情采集系统</span>
-            </div>
-            <div class="col-md-1 offset-md-8 dropdown" style="margin-top: 0.2em;margin-right: 0.5em">
-                <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
-                    admin
-                </button>
-                <div class="dropdown-menu" style="width: 100px">
-                    <a class="dropdown-item" href="#">首页</a>
-                    <a class="dropdown-item" href="#">修改密码</a>
-                    <a class="dropdown-item" href="#">退出</a>
-                </div>
+<nav class="navbar navbar-expand-md bg-dark navbar-light fixed-top">
+    <div class="row container-fluid">
+        <div class="col-md-3" style="margin-left: -1em">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-changyongtubiao-xianxingdaochu-zhuanqu-13"></use>
+            </svg>
+            <span style="color: #dae0e5;font-size: 2em;font-family:KaiTi">后台管理系统</span>
+            <!--<span style="color: #dae0e5;font-size: 2em;font-family:KaiTi">股票信息采集系统</span>-->
+        </div>
+        <div class="col-md-1 offset-md-8 dropdown" style="margin-top: 0.2em;margin-right: 0.5em">
+            <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
+                admin
+            </button>
+            <div class="dropdown-menu" style="width: 100px">
+                <a class="dropdown-item" href="#">首页</a>
+                <a class="dropdown-item" href="#">修改密码</a>
+                <a class="dropdown-item" href="#">退出</a>
             </div>
         </div>
-    </nav>
+    </div>
+</nav>
+
+<div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-secondary border-dark" id="sidebar-wrapper">
+        <div class="sidebar-heading bg-secondary">Start Bootstrap </div>
+        <div class="list-group list-group-flush">
+            <a href="#" class="list-group-item list-group-item-action text-dark bg-secondary border-dark">Dashboard</a>
+            <a href="#" class="list-group-item list-group-item-action text-dark bg-secondary border-dark">Shortcuts</a>
+            <a href="#" class="list-group-item list-group-item-action text-dark bg-secondary border-dark">Overview</a>
+            <a href="#" class="list-group-item list-group-item-action text-dark bg-secondary border-dark">Events</a>
+            <a href="#" class="list-group-item list-group-item-action text-dark bg-secondary border-dark">Profile</a>
+            <a href="#" class="list-group-item list-group-item-action text-dark bg-secondary border-dark">Status</a>
+        </div>
+    </div>
+    <div id="page-content-wrapper">
+        <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+
+        <div class="container-fluid">
+            <h1 class="col-md-4">index</h1>
+            <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
+            <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
 </div>
-<div class="container-fluid">
-    <div class="container col-md-2">
-        <div class="jumbotron text-center" style="margin-bottom:0">
-
-            <h1>我的第一个 Bootstrap 4 页面</h1>
-            <p>重置浏览器窗口大小查看效果！</p>
-        </div>
-    </div>
-    <div class="container col-md-10">
-        <div class="jumbotron text-center" style="margin-bottom:0">
-
-            <h1>我的第一个 Bootstrap 4 页面</h1>
-            <p>重置浏览器窗口大小查看效果！</p>
-        </div>
-    </div>
+<div class="jumbotron text-center" style="margin-bottom:0">
+    <h1>我的第一个 Bootstrap 4 页面</h1>
+    <p>重置浏览器窗口大小查看效果！</p>
 </div>
 <div class="jumbotron text-center" style="margin-bottom:0">
 
     <h1>我的第一个 Bootstrap 4 页面</h1>
     <p>重置浏览器窗口大小查看效果！</p>
 </div>
+<div class="jumbotron text-center" style="margin-bottom:0">
 
+    <h1>我的第一个 Bootstrap 4 页面</h1>
+    <p>重置浏览器窗口大小查看效果！</p>
+</div>
 </body>
 </html>
