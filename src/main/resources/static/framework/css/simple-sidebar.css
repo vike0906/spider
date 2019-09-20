@@ -7,7 +7,7 @@ body {
     overflow-x: hidden;
 }
 #wrapper{
-    margin-top: 66px;
+    margin-top: 4.06125em;
 }
 #sidebar-wrapper {
     min-height: 100vh;
@@ -29,9 +29,19 @@ body {
 
 #page-content-wrapper {
     min-width: 100vw;
+    margin-left: 15rem;
+}
+#sidebar-wrapper{
+    position: fixed;
+    top: 4.06125em;
+    left: 0;
+    z-index: 1030;
 }
 
 #wrapper.toggled #sidebar-wrapper {
+     margin-left: 0;
+ }
+#wrapper.toggled #page-content-wrapper {
     margin-left: 0;
 }
 
