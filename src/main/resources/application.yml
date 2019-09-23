@@ -1,14 +1,13 @@
 server:
-  port: 8081
+  port: 8080
 spring:
   thymeleaf:
     cache: false
     encoding: UTF-8
     suffix: .html
     prefix: classpath:/templates/
-  data:
-    mongodb:
-      uri: mongodb://stock:123456@106.13.222.152:9003/stockdb
+  profiles:
+    active: dev
 
 
 
