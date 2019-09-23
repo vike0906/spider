@@ -20,4 +20,6 @@ public interface BaseStockInfoRepository extends MongoRepository<BaseStockInfo,S
     Optional<BaseStockInfo> findByName(String name);
 
     List<BaseStockInfo> findAllByExchange(String exchange, Pageable pageable);
+
+    List<BaseStockInfo> findAllByExchange(String exchange);
 }

@@ -2,6 +2,7 @@ package com.vike.spider.stock.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -20,6 +21,7 @@ import java.util.Date;
 })
 @Data
 @NoArgsConstructor
+@Accessors(chain = true)
 public class BaseStockInfo {
 
     @Field("code")
@@ -35,4 +37,16 @@ public class BaseStockInfo {
 
     @Field("update_time")
     private Date updateTime;
+
+    @Field("create_time")
+    private Date createTime;
+
+    @Override
+    public boolean equals(Object object){
+        if(object instanceof BaseStockInfo){
+            BaseStockInfo bs = (BaseStockInfo)object;
+            return bs.getName().equals(this.name) && bs.getCode().equals(this.code);
+        }
+        return false;
+    }
 }
