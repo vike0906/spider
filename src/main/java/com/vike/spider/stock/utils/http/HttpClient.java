@@ -32,7 +32,8 @@ public class HttpClient {
     public static String doGet(String httpUrl) {
 
         HttpURLConnection connection = null;
-        String result = null;// 返回结果字符串
+        // 返回结果字符串
+        String result = null;
         try {
             URL url = new URL(httpUrl);
             connection = (HttpURLConnection) url.openConnection();

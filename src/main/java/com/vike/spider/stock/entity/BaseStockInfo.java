@@ -3,6 +3,7 @@ package com.vike.spider.stock.entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -24,6 +25,9 @@ import java.util.Date;
 @Accessors(chain = true)
 public class BaseStockInfo {
 
+    @Id
+    private String id;
+
     @Field("code")
     @Indexed()
     private String code;
@@ -34,6 +38,9 @@ public class BaseStockInfo {
 
     @Field("exchange")
     private String exchange;
+
+    @Field("is_exist")
+    private int isExist;
 
     @Field("update_time")
     private Date updateTime;

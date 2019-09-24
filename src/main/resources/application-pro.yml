@@ -4,4 +4,4 @@ spring:
       uri: mongodb://stock:123456@106.13.222.152:9003/stockdb
 
 logging:
-  config: classpath:logs/dev.xml
+  config: classpath:logs/pro.xml
