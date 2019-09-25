@@ -28,23 +28,69 @@ public class BaseStockInfo {
     @Id
     private String id;
 
+    /**股票代码*/
     @Field("code")
     @Indexed()
     private String code;
 
+    /**股票名称*/
     @Field("name")
     @Indexed()
     private String name;
 
+    /**交易所*/
     @Field("exchange")
     private String exchange;
 
+    /**最新价*/
+    @Field("last_price")
+    private double lastPrice;
+
+    /**涨跌幅*/
+    @Field("change")
+    private double change;
+
+    /**60日涨跌幅*/
+    @Field("change_sixty")
+    private double changeSixty;
+
+    /**年初至今涨跌幅*/
+    @Field("change_begin_year")
+    private double changeBeginYear;
+
+    /**涨跌额度*/
+    @Field("change_amount")
+    private double changeAmount;
+
+    /**换手率*/
+    @Field("turnover_rate")
+    private double turnoverRate;
+
+    /**市盈率*/
+    @Field("pe")
+    private double pe;
+
+    /**市净率*/
+    @Field("pb")
+    private double pb;
+
+    /**流通市值*/
+    @Field("cmv")
+    private double circulationMarketValue;
+
+    /**总市值*/
+    @Field("total_value")
+    private double totalValue;
+
+    /**是否退市1：正常，9：已退市*/
     @Field("is_exist")
     private int isExist;
 
+    /**更新时间*/
     @Field("update_time")
     private Date updateTime;
 
+    /**写入时间*/
     @Field("create_time")
     private Date createTime;
 

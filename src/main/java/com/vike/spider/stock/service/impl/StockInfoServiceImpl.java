@@ -19,8 +19,8 @@ public class StockInfoServiceImpl implements StockInfoService {
     BaseStockInfoRepository baseStockInfoRepository;
 
     @Override
-    public Page<BaseStockInfo> selectBaseStockInfo(PageLimit pageLimit) {
-        Page<BaseStockInfo> page = baseStockInfoRepository.findAll(pageLimit.page(false,"code"));
+    public Page<BaseStockInfo> selectBaseStockInfo(PageLimit pageLimit, String order) {
+        Page<BaseStockInfo> page = baseStockInfoRepository.findAll(pageLimit.page(true,order));
         return page;
     }
 }

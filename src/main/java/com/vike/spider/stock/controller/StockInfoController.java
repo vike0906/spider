@@ -4,21 +4,13 @@ import com.vike.spider.common.PageLimit;
 import com.vike.spider.stock.entity.BaseStockInfo;
 import com.vike.spider.stock.repository.BaseStockInfoRepository;
 import com.vike.spider.stock.service.StockInfoService;
-import com.vike.spider.stock.spider.StockInfo;
-import com.vike.spider.stock.spider.entity.DFBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author: lsl
@@ -34,8 +26,8 @@ public class StockInfoController {
     StockInfoService stockInfoService;
 
     @GetMapping("base")
-    public String base(ModelMap map, PageLimit pageLimit){
-        Page<BaseStockInfo> page = stockInfoService.selectBaseStockInfo(pageLimit);
+    public String base(ModelMap map, PageLimit pageLimit, @RequestParam(value = "order",defaultValue = "change") String order){
+        Page<BaseStockInfo> page = stockInfoService.selectBaseStockInfo(pageLimit, order);
         map.addAttribute("page",page);
         return "index";
 
@@ -46,7 +38,7 @@ public class StockInfoController {
         return "index";
     }
 
-    @GetMapping("insert")
+    /**@GetMapping("insert")
     @ResponseBody
     public String insert(){
         long currentTimeMillis = System.currentTimeMillis();
@@ -73,6 +65,6 @@ public class StockInfoController {
             return bs;
         }).collect(Collectors.toList());
         return baseStockInfos;
-    }
+    }*/
 
 }

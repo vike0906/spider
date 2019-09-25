@@ -18,7 +18,8 @@ public class StockInfo {
             "cb=stock-info" +
             "&pn=1" +
             "&fields=f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f12,f13,f14,f15,f16,f17,f18,f20,f21,f23,f24,f25,f22,f11,f62,f128,f136,f115,f152"+
-            "&np=1";
+            "&np=1"+ //array||object
+            "&fltt=2";
     private static final String SZ_EXCHANGE =  "m:0+t:6,m:0+t:13,m:0+t:80";
     private static final String SH_EXCHANGE =  "m:1+t:2,m:1+t:23";
     private static final String ALL_EXCHANGE =  "m:0+t:6,m:0+t:13,m:0+t:80,m:1+t:2,m:1+t:23";
@@ -34,10 +35,13 @@ public class StockInfo {
 
         StringBuffer apiUrl = new StringBuffer(BASE_URL);
 
+        //sort
         apiUrl.append("&fid=");
         apiUrl.append(sort);
+        //exchange
         apiUrl.append("&fs=");
         apiUrl.append(exchange);
+        //pageSize
         apiUrl.append("&pz=");
         apiUrl.append(number);
         logger.info("Request: {}",apiUrl.toString());
