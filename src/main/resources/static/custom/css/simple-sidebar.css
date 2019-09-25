@@ -125,6 +125,9 @@ padding-top: 72px; /* Space for fixed navbar */
     background-color: #525e69;
     border-color: #525e69;
 }
+.top-button-color:focus{
+    box-shadow: none;
+}
 
 .spider-color{
     background: #d6dee5;
