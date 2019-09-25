@@ -117,6 +117,28 @@ padding-top: 72px; /* Space for fixed navbar */
 /*
 * Navbar
 */
+.top-color{
+    background: #525e69;
+}
+.top-button-color{
+    color: #dae0e5;
+    background-color: #525e69;
+    border-color: #525e69;
+}
+
+.spider-color{
+    background: #d6dee5;
+}
+
+.card .card-header .button-color{
+    color: #000000;
+    background-color: #d1d9e0;
+    border-color: #bfc6cc;
+}
+
+.card .card-header .button-color:focus{
+    box-shadow: none;
+}
 
 .navbar-brand {
 padding-top: .75rem;
@@ -146,4 +168,21 @@ border-color: rgba(255, 255, 255, .1);
 .form-control-dark:focus {
 border-color: transparent;
 box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+}
+
+.page-link{
+    color: #525e69;
+    border: 1px solid #cdd2d8;
+}
+.page-link:focus{
+    box-shadow: none;
+}
+.page-link:focus{
+    z-index:2;
+    outline:0;
+    box-shadow:0 0 0 .2rem rgba(227, 225, 226, 0.2)
+}
+.page-item.active .page-link{
+    background-color: #bac3ce;
+    border-color: #c3c7cc;
 }
