@@ -29,7 +29,8 @@ public class StockInfoController {
     public String base(ModelMap map, PageLimit pageLimit, @RequestParam(value = "order",defaultValue = "change") String order){
         Page<BaseStockInfo> page = stockInfoService.selectBaseStockInfo(pageLimit, order);
         map.addAttribute("page",page);
-        return "index";
+        map.addAttribute("userName","李华");
+        return "stock/index";
 
     }
 

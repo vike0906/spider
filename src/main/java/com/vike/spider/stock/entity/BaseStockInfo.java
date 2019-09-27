@@ -17,9 +17,9 @@ import java.util.Date;
  * @createDate: 2019/9/23
  */
 @Document(collection = "baseStockInfo")
-@CompoundIndexes({
+/*@CompoundIndexes({
         @CompoundIndex(name = "name_code",def = "{'code':1,'name':1}",unique = true)
-})
+})*/
 @Data
 @NoArgsConstructor
 @Accessors(chain = true)
@@ -30,7 +30,7 @@ public class BaseStockInfo {
 
     /**股票代码*/
     @Field("code")
-    @Indexed()
+    @Indexed(unique = true)
     private String code;
 
     /**股票名称*/
@@ -98,7 +98,7 @@ public class BaseStockInfo {
     public boolean equals(Object object){
         if(object instanceof BaseStockInfo){
             BaseStockInfo bs = (BaseStockInfo)object;
-            return bs.getName().equals(this.name) && bs.getCode().equals(this.code);
+            return bs.getCode().equals(this.code);
         }
         return false;
     }

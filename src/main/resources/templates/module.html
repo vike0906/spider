@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!--header-->
+<head th:fragment="head" id="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Thymeleaf</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/framework/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/framework/css/iconfont.css}">
+    <link rel="stylesheet" th:href="@{/custom/css/simple-sidebar.css}">
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script type="text/javascript" th:src="@{/framework/js/jquery-3.4.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/framework/js/bootstrap.bundle.min.js}"></script>
+    <script type="text/javascript" th:src="@{/framework/js/iconfont.js}"></script>
+    <script type="text/javascript" th:src="@{/custom/js/spider.js}"></script>
+</head>
+
+<!--top-->
+<nav th:fragment="top" id="top" class="navbar navbar-dark fixed-top top-color flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand navbar-left" href="#">
+        <div class="d-flex">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-changyongtubiao-xianxingdaochu-zhuanqu-13"></use>
+            </svg>
+            <span style="color: #dae0e5;font-family:KaiTi">后台管理系统</span>
+        </div>
+    </a>
+    <div class="dropdown navbar-ritht">
+        <button th:text="${loginName}" type="button" class="btn top-button-color dropdown-toggle" data-toggle="dropdown">
+            admin
+        </button>
+        <div class="dropdown-menu" style="width: 100px">
+            <a class="dropdown-item" href="#">首页</a>
+            <a class="dropdown-item" href="#">修改密码</a>
+            <a class="dropdown-item" href="#">退出</a>
+        </div>
+    </div>
+</nav>
+
+<!--spider-->
+<nav th:fragment="spider" class="col-md-1 d-none d-md-block spider-color sidebar">
+    <div class="sidebar-sticky">
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header">
+                    <a class="btn button-color btn-block" role="button" href="#collapse-1"
+                       data-toggle="collapse">信息平台</a>
+                </div>
+                <div class="collapse" id="collapse-1" data-parent="#accordion">
+                    <div class="card-body">
+                        <a class="btn btn btn-light btn-block" role="button" href="#">指数信息</a>
+                        <a class="btn btn btn-light btn-block" role="button" href="#">行情信息</a>
+                        <a class="btn btn btn-light btn-block" role="button" href="#">公司信息</a>
+                        <a class="btn btn btn-light btn-block" role="button" href="#">实时推送</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <a class="btn button-color btn-block" role="button" href="#collapse-2"
+                       data-toggle="collapse">系统管理</a>
+                </div>
+                <div class="collapse" id="collapse-2" data-parent="#accordion">
+                    <div class="card-body">
+                        <a class="btn btn btn-light btn-block" role="button" href="#">用户管理</a>
+                        <a class="btn btn btn-light btn-block" role="button" href="#">权限管理</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <a class="btn button-color btn-block" role="button" href="#collapse-3"
+                       data-toggle="collapse">信息平台</a>
+                </div>
+                <div class="collapse" id="collapse-3" data-parent="#accordion">
+                    <div class="card-body">
+                        <a class="btn btn btn-light btn-block" role="button" href="#">指数信息</a>
+                        <a class="btn btn btn-light btn-block" role="button" href="#">行情信息</a>
+                        <a class="btn btn btn-light btn-block" role="button" href="#">公司信息</a>
+                        <a class="btn btn btn-light btn-block" role="button" href="#">实时推送</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <a class="btn button-color btn-block" role="button" href="#collapse-4"
+                       data-toggle="collapse">系统管理</a>
+                </div>
+                <div class="collapse" id="collapse-4" data-parent="#accordion">
+                    <div class="card-body">
+                        <a class="btn btn btn-light btn-block" role="button" href="#">用户管理</a>
+                        <a class="btn btn btn-light btn-block" role="button" href="#">权限管理</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!--page-->
+<nav th:fragment="page" aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+        <li class="page-item"><a class="page-link" href="#">上一页</a></li>
+        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">&#8230</a></li>
+        <li class="page-item"><a class="page-link" href="#">29</a></li>
+        <li class="page-item"><a class="page-link" href="#">下一页</a></li>
+    </ul>
+</nav>
+
+<!--spider dynamic -->
+<nav th:fragment="spider-dynamic(menu)" class="col-md-1 d-none d-md-block spider-color sidebar">
+    <div class="sidebar-sticky">
+        <div id="accordion-dynamic">
+            <div th:each="parent,state:${menu}">
+                <div class="card">
+                    <div class="card-header">
+                        <a class="btn button-color btn-block" role="button" href="'#collapse-'+${state.count}"
+                           data-toggle="collapse" th:text="${parent.name}"></a>
+                    </div>
+                    <div th:if="${parent.name eq 1}" class="collapse" id="'collapse-'+${state.count}" data-parent="#accordion-dynamic">
+                        <div class="card-body" th:each="sub,subState:${parent.subs}">
+                            <a class="btn btn btn-light btn-block" role="button" th:text="sub.name" href="${sub.url}}"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+</html>
