@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Thymeleaf</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/framework/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/framework/css/iconfont.css}">
+    <link rel="stylesheet" th:href="@{/custom/css/sign.css}">
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script type="text/javascript" th:src="@{/framework/js/jquery-3.4.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/framework/js/bootstrap.bundle.min.js}"></script>
+    <script type="text/javascript" th:src="@{/framework/js/iconfont.js}"></script>
+
+
+</head>
+<body>
+<div class="form-sign">
+    <h2 style="color: #000000">Spider信息平台</h2>
+
+    <!--<div class="dropdown-divider"></div>-->
+    <hr>
+    <form action="/client/login" method="post">
+
+        <div class="form-group row">
+            <label for="loginName" class="col-sm-3 col-form-label">登录名</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="loginName" name="loginName" aria-describedby="emailHelp" placeholder="Login Name">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="password" class="col-sm-3 col-form-label">密码</label>
+            <div class="col-sm-9">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            </div>
+
+        </div>
+
+        <button type="submit" class="btn btn-success">登录</button>
+    </form>
+</div>
+
+</body>
+</html>

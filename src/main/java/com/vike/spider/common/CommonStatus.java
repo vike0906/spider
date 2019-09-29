@@ -1,4 +1,4 @@
-package com.vike.spider.stock;
+package com.vike.spider.common;
 
 /**
  * @author: lsl

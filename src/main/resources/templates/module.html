@@ -51,10 +51,10 @@
                     <a class="btn button-color btn-block" role="button" href="#collapse-1"
                        data-toggle="collapse">信息平台</a>
                 </div>
-                <div class="collapse" id="collapse-1" data-parent="#accordion">
+                <div class="collapse show" id="collapse-1" data-parent="#accordion">
                     <div class="card-body">
                         <a class="btn btn btn-light btn-block" role="button" href="#">指数信息</a>
-                        <a class="btn btn btn-light btn-block" role="button" href="#">行情信息</a>
+                        <a class="btn btn btn-light btn-block active" role="button" href="#">行情信息</a>
                         <a class="btn btn btn-light btn-block" role="button" href="#">公司信息</a>
                         <a class="btn btn btn-light btn-block" role="button" href="#">实时推送</a>
                     </div>
@@ -116,24 +116,23 @@
 </nav>
 
 <!--spider dynamic -->
-<nav th:fragment="spider-dynamic(menu)" class="col-md-1 d-none d-md-block spider-color sidebar">
+<nav th:fragment="spider-dynamic(menus)" class="col-md-1 d-none d-md-block spider-color sidebar">
     <div class="sidebar-sticky">
-        <div id="accordion-dynamic">
-            <div th:each="parent,state:${menu}">
-                <div class="card">
+        <div id="accordion-dynamic" >
+                <div class="card" th:each="parent,state:${menus}">
                     <div class="card-header">
-                        <a class="btn button-color btn-block" role="button" href="'#collapse-'+${state.count}"
-                           data-toggle="collapse" th:text="${parent.name}"></a>
+                        <a class="btn button-color btn-block" role="button" th:href="'#collapse-'+${state.count}"
+                           data-toggle="collapse" th:text="${parent.name}" ></a>
                     </div>
-                    <div th:if="${parent.name eq 1}" class="collapse" id="'collapse-'+${state.count}" data-parent="#accordion-dynamic">
-                        <div class="card-body" th:each="sub,subState:${parent.subs}">
-                            <a class="btn btn btn-light btn-block" role="button" th:text="sub.name" href="${sub.url}}"></a>
+                    <div class="collapse" th:id="'collapse-'+${state.count}" data-parent="#accordion-dynamic" th:classappend="${parent.isActive==1}?'show'">
+                        <div class="card-body">
+                            <a class="btn btn btn-light btn-block" role="button" th:each="sub,subState:${parent.clientMenus}" th:text="${sub.name}" th:href="${sub.url}" th:classappend="${sub.isActive==1}?'active'"></a>
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 </nav>
+
 
 </html>

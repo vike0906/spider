@@ -29,11 +29,11 @@ public class EncryptUtils {
                 hexValue.append("0");
             hexValue.append(Integer.toHexString(val));
         }
-        return hexValue.toString().toUpperCase();
+        return hexValue.toString().toLowerCase();
     }
 
     public static void main(String [] args){
-        String str = "SZ@sxzq%2019";
+        String str = "123456salt";
         System.out.println(MD5(str));
     }
 }

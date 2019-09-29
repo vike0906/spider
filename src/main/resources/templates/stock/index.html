@@ -2,10 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="module::head"></div>
 <body>
-<div th:replace="module::top(loginName=${userName})"></div>
+<div th:replace="module::top(loginName=${client.clientName})"></div>
 <div class="container-fluid">
     <div class="row">
-        <div th:replace="module::spider"></div>
+        <div th:replace="module::spider-dynamic(menus=${client.clientMenus})"></div>
         <main role="main" class="col-md-11 ml-sm-auto col-lg-11 px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <form class="form-inline mt-2 mt-md-0">
