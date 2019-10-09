@@ -13,6 +13,10 @@ import com.vike.spider.stock.service.StockInfoService;
 import com.vike.spider.utils.EncryptUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,10 +24,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author: lsl
@@ -41,34 +46,34 @@ public class ClientController {
     ClientMenuRepository clientMenuRepository;
     @Autowired
     StockInfoService stockInfoService;
+    @Autowired
+    private AuthenticationManager myAuthenticationManager;
+
+    @GetMapping("login")
+    public String login(){
+        return "login";
+    }
 
     /** 登录 */
-    @RequestMapping("login")
-    public String login(ModelMap modelMap,String loginName,String password){
+    @PostMapping("login-post")
+    public String login(HttpServletRequest request, String loginName, String password){
 
-        Optional<Client> optional = clientRepository.findClientByLoginName(loginName);
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(loginName, password);
 
-        if(optional.isPresent()){
+        try{
+            //使用SpringSecurity拦截登陆请求 进行认证和授权
+            Authentication authenticate = myAuthenticationManager.authenticate(usernamePasswordAuthenticationToken);
 
-            Client client = optional.get();
-
-            String pwd = EncryptUtils.MD5(password+client.getSalt());
-
-            if(pwd.equals(client.getPassword())){
-                List<ClientMenu> clientMenus = Common.parse(client.getClientMenus(),"大盘汇总");
-                client.setClientMenus(clientMenus);
-                modelMap.addAttribute("client",client);
-                Page<BaseStockInfo> page = stockInfoService.selectBaseStockInfo(new PageLimit(), "change");
-                modelMap.addAttribute("page",page);
-                return "stock/index";
-            }else {
-                modelMap.addAttribute("message", ExceptionEnum.LOGIN_ERROR.getMessage());
-                return "login";
-            }
-        }else {
-            modelMap.addAttribute("message", ExceptionEnum.LOGIN_ERROR.getMessage());
+            SecurityContextHolder.getContext().setAuthentication(authenticate);
+            //使用redis session共享
+            HttpSession session = request.getSession();
+            session.setAttribute("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext()); // 这个非常重要，否则验证后将无法登陆
+        }catch (Exception e){
+            e.printStackTrace();
             return "login";
         }
+
+        return "redirect:/stock-info/base";
     }
 
     @GetMapping("insert")

@@ -1,6 +1,8 @@
 package com.vike.spider.common;
 
+import com.vike.spider.security.ClientDetail;
 import com.vike.spider.stock.entity.ClientMenu;
+import org.springframework.security.core.GrantedAuthority;
 
 import java.util.*;
 
@@ -10,11 +12,12 @@ import java.util.*;
  */
 public class Common {
 
-    public static List<ClientMenu> parse(List<ClientMenu> clientMenus){
-        return parse(clientMenus,"");
+    public static ClientDetail parse(ClientDetail clientDetail){
+        return parse(clientDetail,"");
     }
 
-    public static List<ClientMenu> parse(List<ClientMenu> clientMenus, String menuName){
+    public static ClientDetail parse(ClientDetail clientDetail, String menuName){
+        List<ClientMenu> clientMenus = clientDetail.getClientMenus();
         String parentId = "";
         clientMenus.sort(Comparator.comparingInt(ClientMenu::getSort));
         List<ClientMenu> parentMenus = new ArrayList<>();
@@ -50,7 +53,7 @@ public class Common {
                 parentMenus.add(clientMenu);
             }
         }
-        return parentMenus;
+        return new ClientDetail("a","a",new ArrayList<>(),parentMenus,clientDetail.getClientName());
 
     }
 

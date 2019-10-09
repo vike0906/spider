@@ -24,7 +24,7 @@
 
     <!--<div class="dropdown-divider"></div>-->
     <hr>
-    <form action="/client/login" method="post">
+    <form action="/client/login-post" method="post">
 
         <div class="form-group row">
             <label for="loginName" class="col-sm-3 col-form-label">登录名</label>
@@ -37,7 +37,8 @@
             <div class="col-sm-9">
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password">
             </div>
-
+        </div>
+        <div class="alert alert-danger" role="alert" th:if="${message!=null}" th:text="${message}">
         </div>
 
         <button type="submit" class="btn btn-success">登录</button>
