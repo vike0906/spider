@@ -1,12 +1,9 @@
 package com.vike.spider.stock.controller;
 
-import com.vike.spider.common.Common;
 import com.vike.spider.common.PageLimit;
 import com.vike.spider.security.ClientDetail;
 import com.vike.spider.security.SecurityUtil;
 import com.vike.spider.stock.entity.BaseStockInfo;
-import com.vike.spider.stock.entity.Client;
-import com.vike.spider.stock.entity.ClientMenu;
 import com.vike.spider.stock.repository.BaseStockInfoRepository;
 import com.vike.spider.stock.repository.ClientRepository;
 import com.vike.spider.stock.service.StockInfoService;
@@ -15,12 +12,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-import java.util.Optional;
 
 /**
  * @author: lsl

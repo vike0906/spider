@@ -2,7 +2,6 @@ package com.vike.spider.common;
 
 import com.vike.spider.security.ClientDetail;
 import com.vike.spider.stock.entity.ClientMenu;
-import org.springframework.security.core.GrantedAuthority;
 
 import java.util.*;
 

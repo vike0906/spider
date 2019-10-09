@@ -101,18 +101,7 @@
                     </tbody>
                 </table>
             </div>
-            <!--<nav aria-label="Page navigation example">-->
-                <!--<ul class="pagination justify-content-end">-->
-                    <!--<li class="page-item"><a class="page-link" href="#">上一页</a></li>-->
-                    <!--<li class="page-item active"><a class="page-link" href="#">1</a></li>-->
-                    <!--<li class="page-item"><a class="page-link" href="#">2</a></li>-->
-                    <!--<li class="page-item"><a class="page-link" href="#">3</a></li>-->
-                    <!--<li class="page-item"><a class="page-link" href="#">&#8230</a></li>-->
-                    <!--<li class="page-item"><a class="page-link" href="#">29</a></li>-->
-                    <!--<li class="page-item"><a class="page-link" href="#">下一页</a></li>-->
-                <!--</ul>-->
-            <!--</nav>-->
-            <div th:replace="module::page2(total=${page.getTotalPages()},number=${page.getNumber()}+1)"></div>
+            <div th:replace="module::page(total=${page.getTotalPages()},number=${page.getNumber()}+1,pageLink='/stock-info/base')"></div>
             <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
             <h2>Section title</h2>
             <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>

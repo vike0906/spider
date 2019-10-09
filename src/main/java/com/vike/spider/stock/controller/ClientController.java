@@ -76,6 +76,8 @@ public class ClientController {
         return "redirect:/stock-info/base";
     }
 
+    /**退出*/
+
     @GetMapping("insert")
     @ResponseBody
     public String insert(){

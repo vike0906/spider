@@ -102,152 +102,9 @@
     </div>
 </nav>
 
-<!--page-->
 
-<nav th:fragment="page(total,number)" aria-label="Page navigation example">
-    <ul class="pagination justify-content-end">
-        <li class="page-item" th:classappend="${number==1}?'disabled'"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}-1)" >上一页</a></li>
-        <div th:switch="${total}">
-            <div th:case="1">
-                <li class="page-item active"><a class="page-link" href="/stock-info/base?pageNo=1">1</a></li>
-            </div>
-            <div th:case="2">
-                <li class="page-item" th:classappend="${number==1}?'active'"><a class="page-link" href="/stock-info/base?pageNo=1">1</a></li>
-                <li class="page-item" th:classappend="${number==2}?'active'"><a class="page-link" href="/stock-info/base?pageNo=2">2</a></li>
-            </div>
-            <div th:case="3">
-                <li class="page-item" th:classappend="${number==1}?'active'"><a class="page-link" href="/stock-info/base?pageNo=1">1</a></li>
-                <li class="page-item" th:classappend="${number==2}?'active'"><a class="page-link" href="/stock-info/base?pageNo=2">2</a></li>
-                <li class="page-item" th:classappend="${number==3}?'active'"><a class="page-link" href="/stock-info/base?pageNo=3">3</a></li>
-            </div>
-            <div th:case="4">
-                <li class="page-item" th:classappend="${number==1}?'active'"><a class="page-link" href="/stock-info/base?pageNo=1">1</a></li>
-                <li class="page-item" th:classappend="${number==2}?'active'"><a class="page-link" href="/stock-info/base?pageNo=2">2</a></li>
-                <li class="page-item" th:classappend="${number==3}?'active'"><a class="page-link" href="/stock-info/base?pageNo=3">3</a></li>
-                <li class="page-item" th:classappend="${number==4}?'active'"><a class="page-link" href="/stock-info/base?pageNo=4">4</a></li>
-            </div>
-            <div style="display: inline" th:case="*" th:switch="${number}">
-                <div style="display: inline" th:if="${number lt 3}">
-                    <li class="page-item" th:classappend="${number==1}?'active'"><a class="page-link" href="/stock-info/base?pageNo=1">1</a></li>
-                    <li class="page-item" th:classappend="${number==2}?'active'"><a class="page-link" href="/stock-info/base?pageNo=2">2</a></li>
-                    <li class="page-item"><a class="page-link"  href="/stock-info/base?pageNo=3">3</a></li>
-                    <li class="page-item disabled"><a class="page-link" href="">&#8230</a></li>
-                    <li class="page-item"><a class="page-link" th:text="${total}" th:href="'/stock-info/base?pageNo='+${total}"></a></li>
-                </div>
-                <div th:if="${number eq 3}">
-                    <li class="page-item"><a class="page-link" href="/stock-info/base?pageNo=1">1</a></li>
-                    <li class="page-item"><a class="page-link" href="/stock-info/base?pageNo=2">2</a></li>
-                    <li class="page-item active"><a class="page-link" href="/stock-info/base?pageNo=3">3</a></li>
-                    <li class="page-item"><a class="page-link" href="/stock-info/base?pageNo=4">4</a></li>
-                    <li class="page-item disabled"><a class="page-link" href="">&#8230</a></li>
-                    <li class="page-item"><a class="page-link" th:text="${total}" th:href="'/stock-info/base?pageNo='+${total}"></a></li>
-                </div>
-                <div th:if="${number gt 3 && number lt (total-2)}">
-                    <li class="page-item"><a class="page-link" href="/stock-info/base?pageNo=1">1</a></li>
-                    <li class="page-item disabled"><a class="page-link" href="">&#8230</a></li>
-                    <li class="page-item"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}-1)" th:text="${number}-1"></a></li>
-                    <li class="page-item active"><a class="page-link" th:href="'/stock-info/base?pageNo='+${number}" th:text="${number}"></a></li>
-                    <li class="page-item"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}+1)" th:text="${number}+1"></a></li>
-                    <li class="page-item disabled"><a class="page-link" href="">&#8230</a></li>
-                    <li class="page-item"><a class="page-link" th:text="${total}" th:href="'/stock-info/base?pageNo='+${total}"></a></li>
-                </div>
-                <div th:if="${number eq (total-2)}">
-                    <li class="page-item"><a class="page-link" href="/stock-info/base?pageNo=1">1</a></li>
-                    <li class="page-item disabled"><a class="page-link" href="">&#8230</a></li>
-                    <li class="page-item"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}-1)" th:text="${number}-1"></a></li>
-                    <li class="page-item active"><a class="page-link" th:href="'/stock-info/base?pageNo='+${number}" th:text="${number}"></a></li>
-                    <li class="page-item"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}+1)" th:text="${number}+1"></a></li>
-                    <li class="page-item"><a class="page-link" th:text="${total}" th:href="'/stock-info/base?pageNo='+${total}"></a></li>
-                </div>
-                <div th:if="${number gt (total-2)}">
-                    <li class="page-item"><a class="page-link" href="/stock-info/base?pageNo=1">1</a></li>
-                    <li class="page-item disabled"><a class="page-link" href="">&#8230</a></li>
-                    <li class="page-item"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${total}-2)" th:text="${total}-2"></a></li>
-                    <li class="page-item" th:classappend="${number eq (${total}-1)}?'active'"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${total}-1)" th:text="${total}-1"></a></li>
-                    <li class="page-item" th:classappend="${number eq total}?'active'"><a class="page-link" th:text="${total}" th:href="'/stock-info/base?pageNo='+${total}"></a></li>
-                </div>
-            </div>
-        </div>
-        <li class="page-item" th:classappend="${number==total}?'disabled'"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}+1)">下一页</a></li>
-    </ul>
-</nav>
-<nav th:fragment="page2(total,number)" aria-label="Page navigation example" th:switch="${total}">
-    <ul class="pagination justify-content-end" th:case="1">
-        <li class="page-item" th:classappend="${number==1}?'disabled'"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}-1)" >上一页</a></li>
-        <li class="page-item active"><a class="page-link" href="/stock-info/base?pageNo=1">1</a></li>
-        <li class="page-item" th:classappend="${number==total}?'disabled'"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}+1)">下一页</a></li>
-    </ul>
-    <ul class="pagination justify-content-end" th:case="2">
-        <li class="page-item" th:classappend="${number==1}?'disabled'"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}-1)" >上一页</a></li>
-        <li class="page-item" th:classappend="${number==1}?'active'"><a class="page-link" href="/stock-info/base?pageNo=1">1</a></li>
-        <li class="page-item" th:classappend="${number==2}?'active'"><a class="page-link" href="/stock-info/base?pageNo=2">2</a></li>
-        <li class="page-item" th:classappend="${number==total}?'disabled'"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}+1)">下一页</a></li>
-    </ul>
-    <ul class="pagination justify-content-end" th:case="3">
-        <li class="page-item" th:classappend="${number==1}?'disabled'"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}-1)" >上一页</a></li>
-        <li class="page-item" th:classappend="${number==1}?'active'"><a class="page-link" href="/stock-info/base?pageNo=1">1</a></li>
-        <li class="page-item" th:classappend="${number==2}?'active'"><a class="page-link" href="/stock-info/base?pageNo=2">2</a></li>
-        <li class="page-item" th:classappend="${number==3}?'active'"><a class="page-link" href="/stock-info/base?pageNo=3">3</a></li>
-        <li class="page-item" th:classappend="${number==total}?'disabled'"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}+1)">下一页</a></li>
-    </ul>
-    <ul class="pagination justify-content-end" th:case="4">
-        <li class="page-item" th:classappend="${number==1}?'disabled'"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}-1)" >上一页</a></li>
-        <li class="page-item" th:classappend="${number==1}?'active'"><a class="page-link" href="/stock-info/base?pageNo=1">1</a></li>
-        <li class="page-item" th:classappend="${number==2}?'active'"><a class="page-link" href="/stock-info/base?pageNo=2">2</a></li>
-        <li class="page-item" th:classappend="${number==3}?'active'"><a class="page-link" href="/stock-info/base?pageNo=3">3</a></li>
-        <li class="page-item" th:classappend="${number==4}?'active'"><a class="page-link" href="/stock-info/base?pageNo=4">4</a></li>
-        <li class="page-item" th:classappend="${number==total}?'disabled'"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}+1)">下一页</a></li>
-    </ul>
-    <ul class="pagination justify-content-end" th:case="*" th:if="${number lt 3}">
-        <li class="page-item" th:classappend="${number==1}?'disabled'"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}-1)" >上一页</a></li>
-        <li class="page-item" th:classappend="${number==1}?'active'"><a class="page-link" href="/stock-info/base?pageNo=1">1</a></li>
-        <li class="page-item" th:classappend="${number==2}?'active'"><a class="page-link" href="/stock-info/base?pageNo=2">2</a></li>
-        <li class="page-item"><a class="page-link"  href="/stock-info/base?pageNo=3">3</a></li>
-        <li class="page-item disabled"><a class="page-link" href="">&#8230</a></li>
-        <li class="page-item"><a class="page-link" th:text="${total}" th:href="'/stock-info/base?pageNo='+${total}"></a></li>
-        <li class="page-item" th:classappend="${number==total}?'disabled'"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}+1)">下一页</a></li>
-    </ul>
-    <ul class="pagination justify-content-end" th:case="*" th:if="${number eq 3}">
-        <li class="page-item" th:classappend="${number==1}?'disabled'"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}-1)" >上一页</a></li>
-        <li class="page-item"><a class="page-link" href="/stock-info/base?pageNo=1">1</a></li>
-        <li class="page-item"><a class="page-link" href="/stock-info/base?pageNo=2">2</a></li>
-        <li class="page-item active"><a class="page-link" href="/stock-info/base?pageNo=3">3</a></li>
-        <li class="page-item"><a class="page-link" href="/stock-info/base?pageNo=4">4</a></li>
-        <li class="page-item disabled"><a class="page-link" href="">&#8230</a></li>
-        <li class="page-item"><a class="page-link" th:text="${total}" th:href="'/stock-info/base?pageNo='+${total}"></a></li>
-        <li class="page-item" th:classappend="${number==total}?'disabled'"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}+1)">下一页</a></li>
-    </ul>
-    <ul class="pagination justify-content-end" th:case="*" th:if="${number gt 3 && number lt (total-2)}">
-        <li class="page-item" th:classappend="${number==1}?'disabled'"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}-1)" >上一页</a></li>
-        <li class="page-item"><a class="page-link" href="/stock-info/base?pageNo=1">1</a></li>
-        <li class="page-item disabled"><a class="page-link" href="">&#8230</a></li>
-        <li class="page-item"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}-1)" th:text="${number}-1"></a></li>
-        <li class="page-item active"><a class="page-link" th:href="'/stock-info/base?pageNo='+${number}" th:text="${number}"></a></li>
-        <li class="page-item"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}+1)" th:text="${number}+1"></a></li>
-        <li class="page-item disabled"><a class="page-link" href="">&#8230</a></li>
-        <li class="page-item"><a class="page-link" th:text="${total}" th:href="'/stock-info/base?pageNo='+${total}"></a></li>
-        <li class="page-item" th:classappend="${number==total}?'disabled'"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}+1)">下一页</a></li>
-    </ul>
-    <ul class="pagination justify-content-end" th:case="*" th:if="${number eq (total-2)}">
-        <li class="page-item" th:classappend="${number==1}?'disabled'"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}-1)" >上一页</a></li>
-        <li class="page-item"><a class="page-link" href="/stock-info/base?pageNo=1">1</a></li>
-        <li class="page-item disabled"><a class="page-link" href="">&#8230</a></li>
-        <li class="page-item"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}-1)" th:text="${number}-1"></a></li>
-        <li class="page-item active"><a class="page-link" th:href="'/stock-info/base?pageNo='+${number}" th:text="${number}"></a></li>
-        <li class="page-item"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}+1)" th:text="${number}+1"></a></li>
-        <li class="page-item"><a class="page-link" th:text="${total}" th:href="'/stock-info/base?pageNo='+${total}"></a></li>
-        <li class="page-item" th:classappend="${number==total}?'disabled'"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}+1)">下一页</a></li>
-    </ul>
-    <ul class="pagination justify-content-end" th:case="*" th:if="${number gt (total-2)}">
-        <li class="page-item" th:classappend="${number==1}?'disabled'"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}-1)" >上一页</a></li>
-        <li class="page-item"><a class="page-link" href="/stock-info/base?pageNo=1">1</a></li>
-        <li class="page-item disabled"><a class="page-link" href="">&#8230</a></li>
-        <li class="page-item"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${total}-2)" th:text="${total}-2"></a></li>
-        <li class="page-item" th:classappend="${number eq (${total}-1)}?'active'"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${total}-1)" th:text="${total}-1"></a></li>
-        <li class="page-item" th:classappend="${number eq total}?'active'"><a class="page-link" th:text="${total}" th:href="'/stock-info/base?pageNo='+${total}"></a></li>
-        <li class="page-item" th:classappend="${number==total}?'disabled'"><a class="page-link" th:href="'/stock-info/base?pageNo='+(${number}+1)">下一页</a></li>
-    </ul>
-</nav>
+
+
 <!--spider dynamic -->
 <nav th:fragment="spider-dynamic(menus)" class="col-md-1 d-none d-md-block spider-color sidebar">
     <div class="sidebar-sticky">
@@ -268,5 +125,64 @@
     </div>
 </nav>
 
+<!--page-->
+<nav th:fragment="page(total,number,pageLink)" aria-label="Page navigation example">
+    <ul class="pagination justify-content-end" th:if="${total lt 7}">
+        <li class="page-item" th:classappend="${number==1}?'disabled'"><a class="page-link" th:href="${pageLink}+'?pageNo='+(${number}-1)" >上一页</a></li>
+        <li class="page-item" th:each="i:${#numbers.sequence(1,total)}" th:classappend="${number==i}?'active'"><a class="page-link" th:href="${pageLink}+'?pageNo='+${i}" th:text="${i}">1</a></li>
+        <li class="page-item" th:classappend="${number==total}?'disabled'"><a class="page-link" th:href="${pageLink}+'?pageNo='+(${number}+1)">下一页</a></li>
+    </ul>
+    <div th:unless="${total lt 7}">
+        <ul class="pagination justify-content-end" th:if="${number lt 3}">
+            <li class="page-item" th:classappend="${number==1}?'disabled'"><a class="page-link" th:href="${pageLink}+'?pageNo='+(${number}-1)" >上一页</a></li>
+            <li class="page-item" th:classappend="${number==1}?'active'"><a class="page-link" th:href="${pageLink}+'?pageNo=1'">1</a></li>
+            <li class="page-item" th:classappend="${number==2}?'active'"><a class="page-link" th:href="${pageLink}+'?pageNo=2'">2</a></li>
+            <li class="page-item"><a class="page-link"  th:href="${pageLink}+'?pageNo=3'">3</a></li>
+            <li class="page-item disabled"><a class="page-link" href="">&#8230</a></li>
+            <li class="page-item"><a class="page-link" th:text="${total}" th:href="${pageLink}+'?pageNo='+${total}"></a></li>
+            <li class="page-item" th:classappend="${number==total}?'disabled'"><a class="page-link" th:href="${pageLink}+'?pageNo='+(${number}+1)">下一页</a></li>
+        </ul>
+        <ul class="pagination justify-content-end" th:if="${number eq 3}">
+            <li class="page-item" th:classappend="${number==1}?'disabled'"><a class="page-link" th:href="${pageLink}+'?pageNo='+(${number}-1)" >上一页</a></li>
+            <li class="page-item"><a class="page-link" th:href="${pageLink}+'?pageNo=1'">1</a></li>
+            <li class="page-item"><a class="page-link" th:href="${pageLink}+'?pageNo=2'">2</a></li>
+            <li class="page-item active"><a class="page-link" th:href="${pageLink}+'?pageNo=3'">3</a></li>
+            <li class="page-item"><a class="page-link" th:href="${pageLink}+'?pageNo=4'">4</a></li>
+            <li class="page-item disabled"><a class="page-link" href="">&#8230</a></li>
+            <li class="page-item"><a class="page-link" th:text="${total}" th:href="${pageLink}+'?pageNo='+${total}"></a></li>
+            <li class="page-item" th:classappend="${number==total}?'disabled'"><a class="page-link" th:href="${pageLink}+'?pageNo='+(${number}+1)">下一页</a></li>
+        </ul>
+        <ul class="pagination justify-content-end" th:if="${number gt 3 && number lt (total-2)}">
+            <li class="page-item" th:classappend="${number==1}?'disabled'"><a class="page-link" th:href="${pageLink}+'?pageNo='+(${number}-1)" >上一页</a></li>
+            <li class="page-item"><a class="page-link" th:href="${pageLink}+'?pageNo=1'">1</a></li>
+            <li class="page-item disabled"><a class="page-link" href="">&#8230</a></li>
+            <li class="page-item"><a class="page-link" th:href="${pageLink}+'?pageNo='+(${number}-1)" th:text="${number}-1"></a></li>
+            <li class="page-item active"><a class="page-link" th:href="${pageLink}+'?pageNo='+${number}" th:text="${number}"></a></li>
+            <li class="page-item"><a class="page-link" th:href="${pageLink}+'?pageNo='+(${number}+1)" th:text="${number}+1"></a></li>
+            <li class="page-item disabled"><a class="page-link" href="">&#8230</a></li>
+            <li class="page-item"><a class="page-link" th:text="${total}" th:href="${pageLink}+'?pageNo='+${total}"></a></li>
+            <li class="page-item" th:classappend="${number==total}?'disabled'"><a class="page-link" th:href="${pageLink}+'?pageNo='+(${number}+1)">下一页</a></li>
+        </ul>
+        <ul class="pagination justify-content-end" th:if="${number eq (total-2)}">
+            <li class="page-item" th:classappend="${number==1}?'disabled'"><a class="page-link" th:href="${pageLink}+'?pageNo='+(${number}-1)" >上一页</a></li>
+            <li class="page-item"><a class="page-link" th:href="${pageLink}+'?pageNo=1'">1</a></li>
+            <li class="page-item disabled"><a class="page-link" href="">&#8230</a></li>
+            <li class="page-item"><a class="page-link" th:href="${pageLink}+'?pageNo='+(${number}-1)" th:text="${number}-1"></a></li>
+            <li class="page-item active"><a class="page-link" th:href="${pageLink}+'?pageNo='+${number}" th:text="${number}"></a></li>
+            <li class="page-item"><a class="page-link" th:href="${pageLink}+'?pageNo='+(${number}+1)" th:text="${number}+1"></a></li>
+            <li class="page-item"><a class="page-link" th:text="${total}" th:href="${pageLink}+'?pageNo='+${total}"></a></li>
+            <li class="page-item" th:classappend="${number==total}?'disabled'"><a class="page-link" th:href="${pageLink}+'?pageNo='+(${number}+1)">下一页</a></li>
+        </ul>
+        <ul class="pagination justify-content-end" th:if="${number gt (total-2)}">
+            <li class="page-item" th:classappend="${number==1}?'disabled'"><a class="page-link" th:href="${pageLink}+'?pageNo='+(${number}-1)" >上一页</a></li>
+            <li class="page-item"><a class="page-link" th:href="${pageLink}+'?pageNo=1'">1</a></li>
+            <li class="page-item disabled"><a class="page-link" href="">&#8230</a></li>
+            <li class="page-item"><a class="page-link" th:href="${pageLink}+'?pageNo='+(${total}-2)" th:text="${total}-2"></a></li>
+            <li class="page-item" th:classappend="${number eq (total-1)}?'active'"><a class="page-link" th:href="${pageLink}+'?pageNo='+(${total}-1)" th:text="${total}-1"></a></li>
+            <li class="page-item" th:classappend="${number eq total}?'active'"><a class="page-link" th:text="${total}" th:href="${pageLink}+'?pageNo='+${total}"></a></li>
+            <li class="page-item" th:classappend="${number==total}?'disabled'"><a class="page-link" th:href="${pageLink}+'?pageNo='+(${number}+1)">下一页</a></li>
+        </ul>
+    </div>
+</nav>
 
 </html>
