@@ -25,11 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class StockInfoController {
 
     @Autowired
-    BaseStockInfoRepository baseStockInfoRepository;
-    @Autowired
     StockInfoService stockInfoService;
-    @Autowired
-    ClientRepository clientRepository;
 
     @GetMapping("base")
     public String base(ModelMap map,  PageLimit pageLimit, @RequestParam(value = "order",defaultValue = "change") String order){
@@ -39,8 +35,7 @@ public class StockInfoController {
         Page<BaseStockInfo> page = stockInfoService.selectBaseStockInfo(pageLimit, order);
         map.addAttribute("page",page);
         map.addAttribute("client", clientDetail);
-        return "stock/index";
-
+        return "stock/base";
     }
 
     @GetMapping("hello")

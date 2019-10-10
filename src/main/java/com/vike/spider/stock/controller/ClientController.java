@@ -3,6 +3,8 @@ package com.vike.spider.stock.controller;
 import com.vike.spider.common.Common;
 import com.vike.spider.common.ExceptionEnum;
 import com.vike.spider.common.PageLimit;
+import com.vike.spider.security.ClientDetail;
+import com.vike.spider.security.SecurityUtil;
 import com.vike.spider.stock.entity.BaseStockInfo;
 import com.vike.spider.stock.entity.Client;
 import com.vike.spider.stock.entity.ClientMenu;
@@ -56,7 +58,7 @@ public class ClientController {
 
     /** 登录 */
     @PostMapping("login-post")
-    public String login(HttpServletRequest request, String loginName, String password){
+    public String login(HttpServletRequest request,String loginName, String password){
 
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(loginName, password);
 
@@ -65,18 +67,26 @@ public class ClientController {
             Authentication authenticate = myAuthenticationManager.authenticate(usernamePasswordAuthenticationToken);
 
             SecurityContextHolder.getContext().setAuthentication(authenticate);
-            //使用redis session共享
+
             HttpSession session = request.getSession();
-            session.setAttribute("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext()); // 这个非常重要，否则验证后将无法登陆
+            // 这个非常重要，否则验证后将无法登陆
+            session.setAttribute("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext());
+
         }catch (Exception e){
             e.printStackTrace();
             return "login";
         }
 
-        return "redirect:/stock-info/base";
+        return "redirect:/client/index";
     }
 
-    /**退出*/
+    /**主页*/
+    @GetMapping("index")
+    public String index(ModelMap map){
+        ClientDetail clientDetail = SecurityUtil.getClientDetail("");
+        map.addAttribute("client", clientDetail);
+        return "stock/index";
+    }
 
     @GetMapping("insert")
     @ResponseBody
@@ -90,10 +100,10 @@ public class ClientController {
         ClientMenu clientMenu22 = new ClientMenu();
         clientMenu1.setId("1").setName("股市信息").setSort((short)1).setIsParent((short)1).setParentId("0").setStatus((short)1).setCreateTime(new Date());
         clientMenu2.setId("2").setName("系统管理").setSort((short)2).setIsParent((short)1).setParentId("0").setStatus((short)1).setCreateTime(new Date());
-        clientMenu11.setId("3").setName("大盘汇总").setSort((short)1).setUrl("stock/base").setIsParent((short)2).setParentId("1").setStatus((short)1).setCreateTime(new Date());
-        clientMenu12.setId("4").setName("实时公告").setSort((short)2).setUrl("stock/notice").setIsParent((short)2).setParentId("1").setStatus((short)1).setCreateTime(new Date());
-        clientMenu21.setId("5").setName("用户管理").setSort((short)1).setUrl("client/user").setIsParent((short)2).setParentId("2").setStatus((short)1).setCreateTime(new Date());
-        clientMenu22.setId("6").setName("权限管理").setSort((short)2).setUrl("client/permission").setIsParent((short)2).setParentId("2").setStatus((short)1).setCreateTime(new Date());
+        clientMenu11.setId("3").setName("大盘汇总").setSort((short)1).setUrl("/stock-info/base").setIsParent((short)2).setParentId("1").setStatus((short)1).setCreateTime(new Date());
+        clientMenu12.setId("4").setName("实时公告").setSort((short)2).setUrl("/stock-info/notice").setIsParent((short)2).setParentId("1").setStatus((short)1).setCreateTime(new Date());
+        clientMenu21.setId("5").setName("用户管理").setSort((short)1).setUrl("/client/user").setIsParent((short)2).setParentId("2").setStatus((short)1).setCreateTime(new Date());
+        clientMenu22.setId("6").setName("权限管理").setSort((short)2).setUrl("/client/permission").setIsParent((short)2).setParentId("2").setStatus((short)1).setCreateTime(new Date());
         clientMenus.add(clientMenu1);
         clientMenus.add(clientMenu2);
         clientMenus.add(clientMenu11);

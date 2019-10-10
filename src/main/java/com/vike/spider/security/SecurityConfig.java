@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 任何尚未匹配的URL只需要验证用户即可访问
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/client/login").successForwardUrl("/stock/index").failureForwardUrl("/client/login?message=1")
+                .formLogin().loginPage("/client/login").successForwardUrl("/stock/index").failureForwardUrl("/client/login")
                 .and()
                 //权限拒绝的页面
                 .exceptionHandling().accessDeniedPage("/403")

@@ -8,6 +8,7 @@ body {
     display: flex;
     -ms-flex-align: center;
     align-items: center;
+    justify-content: center;
     padding-top: 40px;
     padding-bottom: 40px;
     background-color: #91ceda;
@@ -19,10 +20,9 @@ body {
 
 .form-sign {
     width: 100%;
-    max-width: 480px;
+    max-width: 500px;
     padding: 15px;
-    margin: auto;
-    margin-top: 150px;
+    margin-bottom: 16rem;
 }
 .form-sign .checkbox {
     font-weight: 400;
