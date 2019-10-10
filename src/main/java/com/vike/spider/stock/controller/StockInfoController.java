@@ -28,11 +28,11 @@ public class StockInfoController {
     StockInfoService stockInfoService;
 
     @GetMapping("base")
-    public String base(ModelMap map,  PageLimit pageLimit, @RequestParam(value = "order",defaultValue = "change") String order){
+    public String base(ModelMap map,  PageLimit pageLimit, String exchange, @RequestParam(value = "order",defaultValue = "change") String order){
 
         ClientDetail clientDetail = SecurityUtil.getClientDetail("大盘汇总");
 
-        Page<BaseStockInfo> page = stockInfoService.selectBaseStockInfo(pageLimit, order);
+        Page<BaseStockInfo> page = stockInfoService.selectBaseStockInfo(exchange, pageLimit, order);
         map.addAttribute("page",page);
         map.addAttribute("client", clientDetail);
         return "stock/base";

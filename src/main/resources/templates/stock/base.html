@@ -9,10 +9,10 @@
         <main role="main" class="col-md-11 ml-sm-auto col-lg-11 px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <form class="form-inline mt-2 mt-md-0">
-                    <select class="custom-select" placeholder="交易所">
-                        <option th:value="1">全部交易所</option>
-                        <option th:value="2">上海交易所</option>
-                        <option th:value="3">深圳交易所</option>
+                    <select class="custom-select" placeholder="交易所" id="exchange" onchange="base()">
+                        <option >全部交易所</option>
+                        <option th:value="sh">上海交易所</option>
+                        <option th:value="sz">深圳交易所</option>
                     </select>
                     <!--<select class="custom-select"  placeholder="行业" style="margin-left: .5rem">-->
                         <!--<option th:value="1">全部行业</option>-->
@@ -110,5 +110,15 @@
         </main>
     </div>
 </div>
+<script type="text/javascript">
+    function base() {
+        var ex = $('#exchange option:selected') .val();
+        var url = '/stock-info/base?exchange='+ex;
+        // $.get(url, function (data) {
+        //     $('html').html(data);
+        // });
+        window.location.href=url;
+    }
+</script>
 </body>
 </html>
