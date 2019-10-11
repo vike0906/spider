@@ -177,6 +177,11 @@ box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
     /*color: #525e69;*/
     /*border: 1px solid #cdd2d8;*/
 /*}*/
+/*.pagination a:not([href]):not([tabindex]) {*/
+    /*color: #007bff;*/
+    /*text-decoration: none;*/
+/*}*/
+
 .page-link:focus{
     box-shadow: none;
 }

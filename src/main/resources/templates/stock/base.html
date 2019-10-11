@@ -9,10 +9,10 @@
         <main role="main" class="col-md-11 ml-sm-auto col-lg-11 px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <form class="form-inline mt-2 mt-md-0">
-                    <select class="custom-select" placeholder="交易所" id="exchange" onchange="base()">
-                        <option >全部交易所</option>
-                        <option th:value="sh">上海交易所</option>
-                        <option th:value="sz">深圳交易所</option>
+                    <select class="custom-select" placeholder="交易所" id="exchange" onchange="screen()">
+                        <option value="">全部交易所</option>
+                        <option th:value="sh" th:selected="${exchange eq 'sh'}">上海交易所</option>
+                        <option th:value="sz" th:selected="${exchange eq 'sz'}">深圳交易所</option>
                     </select>
                     <!--<select class="custom-select"  placeholder="行业" style="margin-left: .5rem">-->
                         <!--<option th:value="1">全部行业</option>-->
@@ -27,9 +27,9 @@
                         <!--<option th:value="4">小盘股</option>-->
                     <!--</select>-->
                 </form>
-                <form class="form-inline mt-2 mt-md-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="股票代码/股票名称" aria-label="Search">
-                    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">查找</button>
+                <form class="form-inline mt-2 mt-md-0" action="/stock-info/base/cs" id="queryFrom">
+                    <input class="form-control mr-sm-2" id="queryStr" type="text" placeholder="股票代码/股票名称" aria-label="Search" th:value="${queryStr!=null}?${queryStr}">
+                    <a class="btn btn-outline-secondary my-2 my-sm-0" onclick="screen()">查找</a>
                 </form>
             </div>
             <div class="table-responsive">
@@ -101,7 +101,7 @@
                     </tbody>
                 </table>
             </div>
-            <div th:replace="module::page(total=${page.getTotalPages()},number=${page.getNumber()}+1,pageLink='/stock-info/base')"></div>
+            <div th:replace="module::page(total=${page.getTotalPages()},number=${page.getNumber()}+1)"></div>
             <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
             <h2>Section title</h2>
             <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
@@ -111,12 +111,31 @@
     </div>
 </div>
 <script type="text/javascript">
-    function base() {
+    function base(pageNo) {
+        var url = '/stock-info/base?';
+
         var ex = $('#exchange option:selected') .val();
-        var url = '/stock-info/base?exchange='+ex;
-        // $.get(url, function (data) {
-        //     $('html').html(data);
-        // });
+        if(ex.length>0){
+            url = url.concat('exchange=',ex);
+        }
+
+        var queryStr = $('#queryStr').val();
+        if(queryStr.length>0){
+            url = url.concat('&queryStr=',queryStr);
+        }
+
+        if(pageNo!=0){
+            url = url.concat('&pageNo=',pageNo)
+        }
+
+        return url;
+    }
+    function screen() {
+        var url = base(0);
+        window.location.href=url;
+    }
+    function turnPage(pageNo) {
+        var url = base(pageNo);
         window.location.href=url;
     }
 </script>

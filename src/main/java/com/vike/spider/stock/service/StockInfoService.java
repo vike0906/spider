@@ -10,6 +10,6 @@ import org.springframework.data.domain.Page;
  */
 public interface StockInfoService {
 
-    Page<BaseStockInfo> selectBaseStockInfo(String exchange, PageLimit pageLimit, String order);
+    Page<BaseStockInfo> selectBaseStockInfo(String exchange, String query, PageLimit pageLimit, String order);
 
 }
