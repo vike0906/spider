@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="module::head"></div>
+<body>
+<div th:replace="module::top(loginName=${client.clientName})"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="module::spider-dynamic(menus=${client.clientMenus})"></div>
+        <main role="main" class="col-md-11 ml-sm-auto col-lg-11 px-4">
+            <div class="d-flex justify-content-center" style="margin-top: 10rem">
+                <h1>Permission</h1>
+            </div>
+        </main>
+    </div>
+</div>
+<script type="text/javascript">
+    function base(pageNo) {
+        var url = '/stock-info/base?';
+
+        var ex = $('#exchange option:selected') .val();
+        if(ex.length>0){
+            url = url.concat('exchange=',ex);
+        }
+
+        var queryStr = $('#queryStr').val();
+        if(queryStr.length>0){
+            url = url.concat('&queryStr=',queryStr);
+        }
+
+        if(pageNo!=0){
+            url = url.concat('&pageNo=',pageNo)
+        }
+
+        return url;
+    }
+    function screen() {
+        var url = base(0);
+        window.location.href=url;
+    }
+    function turnPage(pageNo) {
+        var url = base(pageNo);
+        window.location.href=url;
+    }
+</script>
+</body>
+</html>

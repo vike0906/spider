@@ -1,20 +1,14 @@
 package com.vike.spider.stock.controller;
 
-import com.vike.spider.common.Common;
-import com.vike.spider.common.ExceptionEnum;
-import com.vike.spider.common.PageLimit;
 import com.vike.spider.security.ClientDetail;
 import com.vike.spider.security.SecurityUtil;
-import com.vike.spider.stock.entity.BaseStockInfo;
 import com.vike.spider.stock.entity.Client;
 import com.vike.spider.stock.entity.ClientMenu;
 import com.vike.spider.stock.repository.ClientMenuRepository;
 import com.vike.spider.stock.repository.ClientRepository;
 import com.vike.spider.stock.service.ClientService;
 import com.vike.spider.stock.service.StockInfoService;
-import com.vike.spider.utils.EncryptUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -85,10 +79,24 @@ public class ClientController {
     public String index(ModelMap map){
         ClientDetail clientDetail = SecurityUtil.getClientDetail("");
         map.addAttribute("client", clientDetail);
-        return "stock/index";
+        return "index";
     }
 
-    @GetMapping("insert")
+    @GetMapping("user")
+    public String user(ModelMap map){
+        ClientDetail clientDetail = SecurityUtil.getClientDetail("用户管理");
+        map.addAttribute("client", clientDetail);
+        return "stock/user";
+    }
+
+    @GetMapping("permission")
+    public String permission(ModelMap map){
+        ClientDetail clientDetail = SecurityUtil.getClientDetail("权限管理");
+        map.addAttribute("client", clientDetail);
+        return "stock/permission";
+    }
+
+    /**@GetMapping("insert")
     @ResponseBody
     public String insert(){
         List<ClientMenu> clientMenus = new ArrayList<>(6);
@@ -117,7 +125,7 @@ public class ClientController {
         clientRepository.save(client);
 
         return "success";
-    }
+    }*/
 
 
 }

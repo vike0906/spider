@@ -5,7 +5,9 @@ import com.vike.spider.stock.entity.BaseStockInfo;
 import com.vike.spider.stock.repository.BaseStockInfoRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import java.util.ArrayList;
@@ -18,8 +20,8 @@ import java.util.stream.Collectors;
  * @createDate: 2019/9/24
  */
 @Slf4j
-//@Component
-//@EnableScheduling
+@Component
+@EnableScheduling
 public class ScheduledTask {
 
     @Autowired

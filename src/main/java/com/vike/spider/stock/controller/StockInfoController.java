@@ -4,8 +4,6 @@ import com.vike.spider.common.PageLimit;
 import com.vike.spider.security.ClientDetail;
 import com.vike.spider.security.SecurityUtil;
 import com.vike.spider.stock.entity.BaseStockInfo;
-import com.vike.spider.stock.repository.BaseStockInfoRepository;
-import com.vike.spider.stock.repository.ClientRepository;
 import com.vike.spider.stock.service.StockInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,9 +38,11 @@ public class StockInfoController {
         return "stock/base";
     }
 
-    @GetMapping("hello")
-    public String hello(){
-        return "index";
+    @GetMapping("notice")
+    public String hello(ModelMap map){
+        ClientDetail clientDetail = SecurityUtil.getClientDetail("实时公告");
+        map.addAttribute("client", clientDetail);
+        return "stock/notice";
     }
 
     /**@GetMapping("insert")

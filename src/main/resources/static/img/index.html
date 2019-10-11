@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Thymeleaf</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/static/framework/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/static/framework/css/iconfont.css}">
+    <link rel="stylesheet" th:href="@{/static/custom/css/simple-sidebar.css}">
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script type="text/javascript" th:src="@{/static/framework/js/jquery-3.4.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/static/framework/js/bootstrap.bundle.min.js}"></script>
+    <script type="text/javascript" th:src="@{/static/framework/js/iconfont.js}"></script>
+    <script type="text/javascript" th:src="@{/static/custom/js/spider.js}"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-dark fixed-top top-color flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand navbar-left" href="#">
+        <div class="d-flex">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-changyongtubiao-xianxingdaochu-zhuanqu-13"></use>
+            </svg>
+            <span style="color: #dae0e5;font-family:KaiTi">后台管理系统</span>
+        </div>
+    </a>
+    <div class="dropdown navbar-ritht">
+        <button type="button" class="btn top-button-color dropdown-toggle" data-toggle="dropdown">
+            admin
+        </button>
+        <div class="dropdown-menu" style="width: 100px">
+            <a class="dropdown-item" href="#">首页</a>
+            <a class="dropdown-item" href="#">修改密码</a>
+            <a class="dropdown-item" href="#">退出</a>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-1 d-none d-md-block spider-color sidebar">
+            <div class="sidebar-sticky">
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="btn button-color btn-block" role="button" href="#collapse-1"
+                               data-toggle="collapse">信息平台</a>
+                        </div>
+                        <div class="collapse" id="collapse-1" data-parent="#accordion">
+                            <div class="card-body">
+                                <a class="btn btn btn-light btn-block" role="button" href="#">指数信息</a>
+                                <a class="btn btn btn-light btn-block" role="button" href="#">行情信息</a>
+                                <a class="btn btn btn-light btn-block" role="button" href="#">公司信息</a>
+                                <a class="btn btn btn-light btn-block" role="button" href="#">实时推送</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="btn button-color btn-block" role="button" href="#collapse-2"
+                               data-toggle="collapse">系统管理</a>
+                        </div>
+                        <div class="collapse" id="collapse-2" data-parent="#accordion">
+                            <div class="card-body">
+                                <a class="btn btn btn-light btn-block" role="button" href="#">用户管理</a>
+                                <a class="btn btn btn-light btn-block" role="button" href="#">权限管理</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="btn button-color btn-block" role="button" href="#collapse-3"
+                               data-toggle="collapse">信息平台</a>
+                        </div>
+                        <div class="collapse" id="collapse-3" data-parent="#accordion">
+                            <div class="card-body">
+                                <a class="btn btn btn-light btn-block" role="button" href="#">指数信息</a>
+                                <a class="btn btn btn-light btn-block" role="button" href="#">行情信息</a>
+                                <a class="btn btn btn-light btn-block" role="button" href="#">公司信息</a>
+                                <a class="btn btn btn-light btn-block" role="button" href="#">实时推送</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="btn button-color btn-block" role="button" href="#collapse-4"
+                               data-toggle="collapse">系统管理</a>
+                        </div>
+                        <div class="collapse" id="collapse-4" data-parent="#accordion">
+                            <div class="card-body">
+                                <a class="btn btn btn-light btn-block" role="button" href="#">用户管理</a>
+                                <a class="btn btn btn-light btn-block" role="button" href="#">权限管理</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-11 ml-sm-auto col-lg-11 px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <form class="form-inline mt-2 mt-md-0">
+                    <select class="custom-select" placeholder="交易所" >
+                        <option th:value="1">全部交易所</option>
+                        <option th:value="2">上海交易所</option>
+                        <option th:value="3">深圳交易所</option>
+                    </select>
+                    <select class="custom-select"  placeholder="行业" style="margin-left: .5rem">
+                        <option th:value="1">全部行业</option>
+                        <option th:value="1">设备制造</option>
+                        <option th:value="2">信息软件</option>
+                        <option th:value="3">农业</option>
+                    </select>
+                    <select class="custom-select" placeholder="分类" style="margin-left: .5rem">
+                        <option th:value="1">全部量级</option>
+                        <option th:value="2">超大盘股</option>
+                        <option th:value="3">中盘股</option>
+                        <option th:value="4">小盘股</option>
+                    </select>
+                </form>
+                <form class="form-inline mt-2 mt-md-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="股票代码/股票名称" aria-label="Search">
+                    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">查找</button>
+                </form>
+
+                <!--<div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group mr-2">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                        <span data-feather="calendar"></span>
+                        This week
+                    </button>
+                </div>-->
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover">
+                    <caption>沪深A股股市基础信息（每天下午三点更新）</caption>
+                    <thead class="thead-light">
+                    <tr>
+                        <th>序号</th>
+                        <th>股票代码</th>
+                        <th>股票名称</th>
+                        <th>交易所</th>
+                        <th>最新价</th>
+                        <th>涨跌幅</th>
+                        <th>涨跌额度</th>
+                        <th>换手率</th>
+                        <th>市盈率(PE)</th>
+                        <th>市净率(PB)</th>
+                        <th>60日涨跌幅</th>
+                        <th>年初至今涨跌幅</th>
+                        <th>流通市值</th>
+                        <th>总市值</th>
+                        <th>状态</th>
+                        <th>更新时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr th:each="stock,stockState : ${page.content}">
+                        <td th:text="${stockState.count}"></td>
+                        <td><a th:text="${stock.code}" href="base"></a></td>
+                        <td><a th:text="${stock.name}" href="base"></a></td>
+                        <td th:text="${stock.exchange}"></td>
+                        <td>
+                            <span  th:if="${stock.lastPrice gt 0}" th:text="${stock.lastPrice}" style="color: red"></span>
+                            <span  th:if="${stock.lastPrice eq 0}" th:text="${stock.lastPrice}" style="color: black"></span>
+                            <span  th:if="${stock.lastPrice lt 0}" th:text="${stock.lastPrice}" style="color: green"></span>
+                        </td>
+                        <td>
+                            <span th:if="${stock.change gt 0}" th:text="${stock.change}+'%'" style="color: red"></span>
+                            <span th:if="${stock.change eq 0}" th:text="${stock.change}+'%'" style="color: black"></span>
+                            <span th:if="${stock.change lt 0}" th:text="${stock.change}+'%'" style="color: green"></span>
+                        </td>
+                        <td>
+                            <span  th:if="${stock.changeAmount gt 0}" th:text="${stock.changeAmount}" style="color: red"></span>
+                            <span  th:if="${stock.changeAmount eq 0}" th:text="${stock.changeAmount}" style="color: black"></span>
+                            <span  th:if="${stock.changeAmount lt 0}" th:text="${stock.changeAmount}" style="color: green"></span>
+                        </td>
+                        <td th:text="${stock.turnoverRate}+'%'"></td>
+                        <td th:text="${stock.pe}"></td>
+                        <td th:text="${stock.pb}"></td>
+                        <td>
+                            <span  th:if="${stock.changeSixty gt 0}" th:text="${stock.changeSixty}+'%'" style="color: red"></span>
+                            <span  th:if="${stock.changeSixty eq 0}" th:text="${stock.changeSixty}+'%'" style="color: black"></span>
+                            <span  th:if="${stock.changeSixty lt 0}" th:text="${stock.changeSixty}+'%'" style="color: green"></span>
+                        </td>
+                        <td>
+                            <span  th:if="${stock.changeBeginYear gt 0}" th:text="${stock.changeBeginYear}+'%'" style="color: red"></span>
+                            <span  th:if="${stock.changeBeginYear eq 0}" th:text="${stock.changeBeginYear}+'%'" style="color: black"></span>
+                            <span  th:if="${stock.changeBeginYear lt 0}" th:text="${stock.changeBeginYear}+'%'" style="color: green"></span>
+                        </td>
+                        <td th:text="${#numbers.formatDecimal(stock.circulationMarketValue/100000000,1,2)}+'亿'"></td>
+                        <td th:text="${#numbers.formatDecimal(stock.totalValue/100000000,1,2)}+'亿'"></td>
+                        <td th:switch="${stock.isExist}">
+                            <span th:case="1" style="color: green">正常</span>
+                            <span th:case="9" style="color: red">已删除</span>
+                        </td>
+                        <td th:text="${#dates.format(stock.updateTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                    <li class="page-item"><a class="page-link" href="#">上一页</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">&#8230</a></li>
+                    <li class="page-item"><a class="page-link" href="#">29</a></li>
+                    <li class="page-item"><a class="page-link" href="#">下一页</a></li>
+                </ul>
+            </nav>
+            <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+            <h2>Section title</h2>
+            <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+            <h2>Section title</h2>
+            <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+
+        </main>
+    </div>
+</div>
+</body>
+</html>
