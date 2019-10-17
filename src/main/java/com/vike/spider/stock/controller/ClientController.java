@@ -1,5 +1,6 @@
 package com.vike.spider.stock.controller;
 
+import com.vike.spider.common.PageLimit;
 import com.vike.spider.security.ClientDetail;
 import com.vike.spider.security.SecurityUtil;
 import com.vike.spider.stock.entity.Client;
@@ -9,6 +10,7 @@ import com.vike.spider.stock.repository.ClientRepository;
 import com.vike.spider.stock.service.ClientService;
 import com.vike.spider.stock.service.StockInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -36,10 +38,7 @@ public class ClientController {
 
     @Autowired
     ClientService clientService;
-    @Autowired
-    ClientRepository clientRepository;
-    @Autowired
-    ClientMenuRepository clientMenuRepository;
+
     @Autowired
     StockInfoService stockInfoService;
     @Autowired
@@ -83,16 +82,20 @@ public class ClientController {
     }
 
     @GetMapping("user")
-    public String user(ModelMap map){
+    public String user(ModelMap map, PageLimit pageLimit){
         ClientDetail clientDetail = SecurityUtil.getClientDetail("用户管理");
+        Page<Client> clients = clientService.selectClient(pageLimit);
         map.addAttribute("client", clientDetail);
+        map.addAttribute("page", clients);
         return "stock/user";
     }
 
     @GetMapping("permission")
-    public String permission(ModelMap map){
+    public String permission(ModelMap map, PageLimit pageLimit){
         ClientDetail clientDetail = SecurityUtil.getClientDetail("权限管理");
+        Page<ClientMenu> clientMenus = clientService.selectClientMenu(pageLimit);
         map.addAttribute("client", clientDetail);
+        map.addAttribute("page", clientMenus);
         return "stock/permission";
     }
 

@@ -7,9 +7,43 @@
     <div class="row">
         <div th:replace="module::spider-dynamic(menus=${client.clientMenus})"></div>
         <main role="main" class="col-md-11 ml-sm-auto col-lg-11 px-4">
-            <div class="d-flex justify-content-center" style="margin-top: 10rem">
-                <h1>User</h1>
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="add()">添加用户</button>
             </div>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover">
+                    <caption>系统用户详情</caption>
+                    <thead class="thead-light">
+                    <tr>
+                        <th>序号</th>
+                        <th>用户名称</th>
+                        <th>登录名</th>
+                        <th>状态</th>
+                        <th>创建时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr th:each="client,state : ${page.content}">
+                        <td th:text="${state.count}"></td>
+                        <td th:text="${client.clientName}"></td>
+                        <td th:text="${client.loginName}"></td>
+                        <td th:switch="${client.status}">
+                            <span th:case="1" style="color: green">正常</span>
+                            <span th:case="9" style="color: red">已删除</span>
+                        </td>
+                        <td th:text="${#dates.format(client.createTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                        <td align="center">
+                            <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="add()">修改</button>
+                            <button class="btn btn-outline-danger my-2 my-sm-0" onclick="add()">删除</button>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div th:replace="module::page(total=${page.getTotalPages()},number=${page.getNumber()}+1)"></div>
         </main>
     </div>
 </div>
